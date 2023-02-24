@@ -7,9 +7,9 @@ SELECT
   MIN(o.created_at) AS first_order_at,
   COUNT(o.id) AS number_of_orders
 FROM
-  `analytics-engineers-club.coffee_shop.customers` c
+  {{ source('coffee_shop', 'customers') }} AS c
 LEFT JOIN
-  `analytics-engineers-club.coffee_shop.orders` o
+  {{ source('coffee_shop', 'orders') }} AS o
 ON
   c.id = o.customer_id
 GROUP BY
