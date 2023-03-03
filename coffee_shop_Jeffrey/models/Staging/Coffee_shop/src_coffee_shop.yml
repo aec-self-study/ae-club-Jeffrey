@@ -10,6 +10,12 @@ sources:
             tests:
               - unique
               - not_null
+          - name: name
+            tests:
+              - not_null
+          - name: email
+            tests:
+              - not_null
  
       - name: orders
         freshness:
@@ -22,6 +28,30 @@ sources:
             tests:
               - unique
               - not_null
+          - name: created_at
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            tests:
+              - unique
+              - not_null
+          - name: total
+            tests:
+              - unique
+              - not_null
+          - name: address
+            tests:
+              - unique
+              - not_null
+          - name: state
+            tests:
+              - unique
+              - not_null
+          - name: zip
+            tests:
+              - unique
+              - not_null
 
       - name: product_prices
         columns:
@@ -29,10 +59,38 @@ sources:
             tests:
               - unique
               - not_null
-              
+          - name: product_id
+            tests:
+              - unique
+              - not_null
+          - name: price
+            tests:
+              - unique
+              - not_null
+          - name: created_at
+            tests:
+              - unique
+              - not_null
+          - name: ended_at
+            tests:
+              - unique
+              - not_null
+
       - name: products
         columns:
           - name: id
+            tests:
+              - unique
+              - not_null
+          - name: name
+            tests:
+              - unique
+              - not_null
+          - name: category
+            tests:
+              - unique
+              - not_null
+          - name: created_at
             tests:
               - unique
               - not_null
