@@ -13,7 +13,7 @@ products AS (
 ),
 final AS (
 SELECT 
-DATE_TRUNC(orders.created_at,WEEK) AS date,
+DATE_TRUNC(orders.created_at,WEEK) AS date_week,
 customers.id AS customer_id, 	
 customers.name,			
 customers.email AS customer_email,			
