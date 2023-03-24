@@ -7,10 +7,10 @@ with source as (
 renamed as (
 
     select
-        id AS order_id,
-        created_at AS order_made_at,
+        id,
+        created_at,
         customer_id,
-        total As total_orders,
+        total,
         address,
         state,
         zip

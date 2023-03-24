@@ -1,12 +1,12 @@
 with source as (
-    select * from {{ source('coffee_shop', 'customers') }}
+    select * from {{ source('coffee_shop', 'order_items') }}
 ),
 
 renamed as (
     select
         id,
-        name,
-        email
+        order_id,
+        product_id
         -- excluded columns
     from source
 )

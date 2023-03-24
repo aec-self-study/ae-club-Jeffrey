@@ -11,18 +11,15 @@ product_prices AS (
 products AS (
     SELECT * FROM {{ ref('stg_coffee_shop_products')}} 
 ),
-WITH final AS (
+final AS (
 SELECT 
-DATE_TRUNC(orders.created_at,WEEK),
+DATE_TRUNC(orders.created_at,WEEK) AS date,
 customers.id AS customer_id, 	
 customers.name,			
 customers.email AS customer_email,			
-orders.first_order_at,		
-orders.Total AS number_of_orders,
-product_prices.price AS price,
-products.category AS product_category
+orders.id,		
+orders.Total AS number_of_orders
 FROM customers
-LEFT JOIN customers on orders.customer_id = customers.customer_id
-LEFT JOIN products ON product_prices.product_id = products.id
+LEFT JOIN orders on orders.customer_id = customers.id
 )
 SELECT * FROM final
