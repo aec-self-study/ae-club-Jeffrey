@@ -7,11 +7,11 @@
 --from {{ ref('sales') }}
 --group by 1
 
+{% set product_category = ['coffee beans', 'merch', 'brewing supplies'] %}
 SELECT
 date_trunc(sold_at, month) as date_month,
-{% set product_category = ['coffee beans', 'merch', 'brewing supplies'] %}
-{% for category in product_category %}
+{%- for category in product_category %}
 sum(case when product_category = '{{category}}' then amount end) as {{category| replace(" ", "_")}}_amount,
-{% endfor %}
+{%- endfor %}
 from {{ ref('sales') }}
 group by 1
