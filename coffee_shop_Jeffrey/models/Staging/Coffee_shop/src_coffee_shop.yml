@@ -1,0 +1,110 @@
+version: 2
+
+sources:
+  - name: coffee_shop
+    project: analytics-engineers-club
+    tables:
+      - name: customers
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: name
+            tests:
+              - not_null
+          - name: email
+            tests:
+              - not_null
+ 
+      - name: orders
+        freshness:
+          error_after: 
+            count: 12
+            period: hour
+        loaded_at_field: created_at
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: created_at
+            tests:
+              - not_null
+          - name: customer_id
+            tests:
+              - not_null
+          - name: total
+            tests:
+              - not_null
+              - greater_than_zero
+          - name: address
+            tests:
+              - not_null
+          - name: state
+            tests:
+              - not_null
+          - name: zip
+            tests:
+              - not_null
+
+      - name: product_prices
+        tests: 
+          - dbt_utils.mutually_exclusive_ranges:
+              lower_bound_column: created_at
+              upper_bound_column: ended_at
+              partition_by: product_id
+              gaps: not_allowed
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: product_id
+            tests:
+              - not_null
+          - name: price
+            tests:
+              - not_null
+              - greater_than_zero
+          - name: created_at
+            tests:
+              - not_null
+          - name: ended_at
+            tests:
+              - not_null
+
+      - name: products
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: name
+            tests:
+              - unique
+              - not_null
+          - name: category
+            tests:
+              - not_null
+          - name: created_at
+            tests:
+              - not_null
+
+      - name: order_items
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: order_id
+            tests:
+              - not_null
+          - name: product_id
+            tests:
+              - not_null
+
+  - name: advanced_dbt_examples
+    project: analytics-engineers-club
+    tables:
+      - name: form_events

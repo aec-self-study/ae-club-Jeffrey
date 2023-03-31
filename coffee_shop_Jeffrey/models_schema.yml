@@ -1,0 +1,34 @@
+version: 2
+
+name: 'coffee_shop'
+
+models:
+  - name: customers
+    description: "An example model"
+    columns:
+      - name: customer_id
+        description: "The customer's ID"
+      - name: name
+        description: "The name of the customer"
+      - name: email
+        description: "The contact address for the customer"
+      - name: first_order_at
+        description: "The timestamp of the first customer order"
+      - name: number_of_orders
+        description: "The number of orders made per customer"
+        tests:
+          - unique
+          - not_null
+
+  - name: customers_ref
+    description: "A second set of customers"
+    columns:
+      - name: customer_id
+        description: "The customer's ID"
+      - name: name
+        description: "The name of the customer"
+      - name: email
+        description: "The contact address for the customer"
+        tests:
+          - unique 
+          - not_null
