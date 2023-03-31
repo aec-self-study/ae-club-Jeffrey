@@ -103,3 +103,8 @@ sources:
           - name: product_id
             tests:
               - not_null
+
+  - name: advanced_dbt_examples
+    project: analytics-engineers-club
+    tables:
+      - name: form_events
