@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: advanced_dbt_examples
+    project: analytics-engineers-club
+    tables:
+      - name: favorite_ice_cream_flavors
+        columns:
+          - name: gitHub_username
+          - name: favorite_ice_cream_flavor
+          - name: created_at
+          - name: updated_at
